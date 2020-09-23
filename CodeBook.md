@@ -16,6 +16,7 @@
 
 # From the data providers : www.smartlab.ws
 
+
 ==================================================================
 Human Activity Recognition Using Smartphones Dataset
 Version 1.0
