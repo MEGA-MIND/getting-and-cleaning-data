@@ -91,3 +91,8 @@ names(dataNew)[c(1,2)] <- c("subject","activity")
 
 #and done
 head(dataNew,10)  #preview
+
+################## 
+# while submission the requirement is to submit the dataNew as a text file .. so be it..
+
+write.table(dataNew,file = "tidyDataset.txt",row.names = FALSE)
