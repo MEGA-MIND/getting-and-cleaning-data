@@ -1,7 +1,7 @@
 ### LOADING THE REQUIRED FILES FOR CLEANING  #################################
 
 features <- read.table("features.txt") # A vector (total 561 rows) contains feature index (1,2,3...) and
-# features i.e mean,std-deviation,mean-amplitude-difference (mad),frequency etc. along 3 axis
+# features i.e mean,std-deviation,mean absolute deviation (mad),frequency etc. along 3 axis
 
 X_test <- read.table("test/X_test.txt",col.names = features[,2])# contains 561 columns in the order
 # of the feature vector; str(X_test) returns "'data.frame':	2947 obs. of  561 variables"
@@ -53,17 +53,22 @@ Y <- activity$activity_name[Y[["activity_code"]]]    # this first extracts value
 ### LABELLING DATASET WITH DESCRIPTIVE VARIABLE NAMES. ###############
 
 # this has to be done on X; as Y and subject are already been descriptively labeled by us.
+# the data for the following changes have been extracted from features_info.txt
 
 temp <- names(X)
 temp <- gsub("^t","time",temp)
 temp <- gsub("Acc","Acceleration",temp)
 temp <- gsub("std","standard.dev",temp)
-temp <- gsub("mad","mean.amp.difference",temp)
+temp <- gsub("mad","mean.abs.dev",temp)
 temp <- gsub("Gyro","Gyroscope",temp)
 temp <- gsub("[(][)]","",temp)     # or regex "\\(\\)" is also valid
 temp <- gsub("Mag","Magnitude",temp)
 temp <- gsub("^f","frequency",temp)
 temp <- gsub("Freq","Frequency",temp)
+temp <- gsub("sma","signal.magnitude.area",temp)
+temp <- gsub("iqr","interquartile.range",temp)
+temp <- gsub("arCoeff","auto.regression.coeff",temp)
+temp <- gsub("Inds","Indexs",temp)
 
 ### CREATING A NEW DATASET WITH MEAN OF EACH VARIABLE (in X) for  each activity and each person (subject)
 
